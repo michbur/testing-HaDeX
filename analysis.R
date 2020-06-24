@@ -25,7 +25,7 @@ calc_dat <- lapply(unique(dat[["State"]]), function(x){
          calc_abs_avg_theo_in_time_diff = abs(abs_avg_theo_in_time - calc_abs))
 
 
-select(calc_dat, 
+p <- select(calc_dat, 
        calc_abs_diff, 
        calc_abs_maxuptake_diff,
        calc_abs_avg_theo_in_time_diff,
@@ -35,4 +35,9 @@ select(calc_dat,
   ggplot() +
   geom_histogram(aes(x = value)) +
   coord_cartesian(xlim = c(0, 15), ylim = c(0, 20)) +
-  facet_wrap(~ variable, ncol = 1)
+  facet_wrap(~ variable, ncol = 1) +
+  theme_bw()
+
+png("p.png")
+print(p)
+dev.off()
