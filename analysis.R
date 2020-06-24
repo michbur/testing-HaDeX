@@ -30,12 +30,11 @@ p <- select(calc_dat,
        calc_abs_maxuptake_diff,
        calc_abs_avg_theo_in_time_diff,
        State) %>% 
-  filter(State == "CD160") %>% 
   melt %>% 
   ggplot() +
   geom_histogram(aes(x = value)) +
   coord_cartesian(xlim = c(0, 15), ylim = c(0, 20)) +
-  facet_wrap(~ variable, ncol = 1) +
+  facet_grid(variable ~ State) +
   theme_bw()
 
 png("p.png")
